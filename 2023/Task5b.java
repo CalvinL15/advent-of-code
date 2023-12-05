@@ -85,7 +85,7 @@ public class Task5b {
     private static long[] returnValueAndBound(long val, List<ConversionMap> conversionMaps) {
         long bound = Long.MAX_VALUE;
         for (ConversionMap conversionMap : conversionMaps) {
-            long[] valueAndBound = conversionMap.convert(val);
+            long[] valueAndBound = conversionMap.convertValue(val);
             bound = Math.min(bound, valueAndBound[1]);
             val = valueAndBound[0];
         }
@@ -94,30 +94,49 @@ public class Task5b {
 }
 
 class ConversionMap {
-    ArrayList<Long> starts;
-    ArrayList<Long> ends;
+    ArrayList<Long> sources;
+    ArrayList<Long> destinations;
     ArrayList<Long> betweens;
 
     public ConversionMap(ArrayList<Long> destinations, ArrayList<Long> sources, ArrayList<Long> ranges) {
-        starts = new ArrayList<>();
-        ends = new ArrayList<>();
-        betweens = new ArrayList<>();
+        this.sources = new ArrayList<>();
+        this.destinations = new ArrayList<>();
+        this.betweens = new ArrayList<>();
         for (int i = 0; i<destinations.size(); i++) {
-            starts.add(sources.get(i));
-            ends.add(destinations.get(i));
-            betweens.add(ranges.get(i));
+            this.sources.add(sources.get(i));
+            this.destinations.add(destinations.get(i));
+            this.betweens.add(ranges.get(i));
         }
     }
-    public long[] convert(long val) {
-        long nextStart = Long.MAX_VALUE;
-        for (int i = 0; i < starts.size(); i++) {
-            if (starts.get(i) > val) {
-                nextStart = Math.min(nextStart, starts.get(i) - val - 1);
-            }
-            if (starts.get(i) <= val && starts.get(i) + betweens.get(i) > val) {
-                return new long[]{ends.get(i) + (val - starts.get(i)), betweens.get(i) - (val - starts.get(i)) - 1};
+
+    private long findNextSource(long val) {
+        long nextSource = Long.MAX_VALUE;
+        for (Long source : sources) {
+            if (source > val) {
+                long distanceToNextStart = source - val - 1;
+                if (distanceToNextStart < nextSource) {
+                    nextSource = distanceToNextStart;
+                }
             }
         }
-        return new long[]{val, nextStart == Long.MAX_VALUE ? 0 : nextStart};
+        return nextSource;
+    }
+
+    private boolean isInRange(long val, int index) {
+        long source = sources.get(index);
+        long rangeEnd = source + betweens.get(index);
+        return val >= source && val < rangeEnd;
+    }
+
+    public long[] convertValue(long val) {
+        for (int i = 0; i < sources.size(); i++) {
+            if (isInRange(val, i)) {
+                long convertedValue = destinations.get(i) + (val - sources.get(i));
+                long bound = betweens.get(i) - (val - sources.get(i)) - 1;
+                return new long[]{convertedValue, bound};
+            }
+        }
+        long nextStart = findNextSource(val);
+        return new long[]{val, nextStart != Long.MAX_VALUE ? nextStart : 0};
     }
 }
