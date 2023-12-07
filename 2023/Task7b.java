@@ -9,7 +9,7 @@ import java.util.Map;
 public class Task7b {
     public static void main(String[] args) {
         long totalWinnings = 0;
-        File input = new File("2023/input");
+        File input = new File("input");
         ArrayList<Cards7b> cards = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             String line;

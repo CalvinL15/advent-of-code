@@ -7,7 +7,7 @@ import java.util.*;
 public class Task7a {
     public static void main(String[] args) {
         long totalWinnings = 0;
-        File input = new File("2023/input");
+        File input = new File("input");
         ArrayList<Cards7a> cards = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             String line;
