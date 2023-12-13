@@ -44,7 +44,8 @@ public class Task12 {
         long totalTaskB = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             while ((line = reader.readLine()) != null) {
-                HashMap<String, Long> memoMap = new HashMap<>();
+                HashMap<String, Long> memoMapA = new HashMap<>();
+                HashMap<String, Long> memoMapB = new HashMap<>();
                 String[] records = line.split(" ");
                 String[] contiguousGroupStr = records[1].split(",");
                 // task a
@@ -66,10 +67,10 @@ public class Task12 {
                 }
 
                 // task a
-                totalTaskA += countPossibleArrangement(memoMap, records[0], contiguousGroup, 0, 0, 0);
+                totalTaskA += countPossibleArrangement(memoMapA, records[0], contiguousGroup, 0, 0, 0);
 
                 // task b
-                totalTaskB += countPossibleArrangement(memoMap, unfoldedRecord, unfoldedContiguousGroup, 0, 0, 0);
+                totalTaskB += countPossibleArrangement(memoMapB, unfoldedRecord, unfoldedContiguousGroup, 0, 0, 0);
             }
             System.out.println("task a: " + totalTaskA);
             System.out.println("task b: " + totalTaskB);
