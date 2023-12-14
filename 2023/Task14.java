@@ -131,32 +131,27 @@ public class Task14 {
             ArrayList<String> correctMap = maps.get(cycleStartIdx + (1000000000 - cycleStartIdx - 1) % (cycleEndIdx - cycleStartIdx));
 
             // task a
-            for (int i = 0; i<transformedMap.size(); i++){
-                String curRow = transformedMap.get(i);
-                int amountOfRocks = 0;
-                for (int j = 0; j<curRow.length(); j++){
-                    if (curRow.charAt(j) == 'O'){
-                        amountOfRocks++;
-                    }
-                }
-                totalTaskA += amountOfRocks*(transformedMap.size()-i);
-            }
+            totalTaskA = getTotalTask(totalTaskA, transformedMap);
 
             // task b
-            for (int i = 0; i<correctMap.size(); i++){
-                String curRow = correctMap.get(i);
-                int amountOfRocks = 0;
-                for (int j = 0; j<curRow.length(); j++){
-                    if (curRow.charAt(j) == 'O'){
-                        amountOfRocks++;
-                    }
-                }
-                totalTaskB += amountOfRocks*(correctMap.size()-i);
-            }
+            totalTaskB = getTotalTask(totalTaskB, correctMap);
             System.out.println("task A: " + totalTaskA);
             System.out.println("task B: " + totalTaskB);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private static int getTotalTask(int totalTask, ArrayList<String> correctMap) {
+        for (int i = 0; i<correctMap.size(); i++){
+            String curRow = correctMap.get(i);
+            int amountOfRocks = 0;
+            for (int j = 0; j<curRow.length(); j++){
+                if (curRow.charAt(j) == 'O'){
+                    amountOfRocks++;
+                }
+            }
+            totalTask += amountOfRocks*(correctMap.size()-i);
+        }
+        return totalTask;
     }
 }
