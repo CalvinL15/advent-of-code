@@ -76,30 +76,17 @@ public class Task14 {
             ArrayList<String> transformedMap = transformMap(map, true, true,"left");
             transformedMap = transformMap(transformedMap, false, true,"left");
 
-            // do first cycle, for task b
+            // task b
             ArrayList<ArrayList<String>> maps = new ArrayList<>();
-            // north
-            maps.add(transformMap(map, true, true,"left"));
-            maps.set(0, transformMap(maps.get(0), false, true,"left"));
-
-            // west
-            maps.set(0, transformMap(maps.get(0), true, false, "left"));
-
-            // south
-            maps.set(0, transformMap(maps.get(0), true, true,"right"));
-            maps.set(0, transformMap(maps.get(0), false, true,"right"));
-
-            // east
-            maps.set(0, transformMap(maps.get(0), true, false,"right"));
 
             int curIdx = 0;
             int cycleStartIdx = -1;
             int cycleEndIdx = -1;
 
             while (true) {
-                curIdx++;
+
                 // do transformation
-                maps.add(transformMap(maps.get(curIdx - 1), true, true,"left"));
+                maps.add(transformMap(curIdx == 0 ? map : maps.get(curIdx - 1), true, true,"left"));
                 maps.set(curIdx, transformMap(maps.get(curIdx), false, true,"left"));
                 maps.set(curIdx, transformMap(maps.get(curIdx), true, false, "left"));
                 maps.set(curIdx, transformMap(maps.get(curIdx), true, true,"right"));
@@ -126,6 +113,8 @@ public class Task14 {
                 if (isAllEqual) {
                     break;
                 }
+
+                curIdx++;
             }
 
             ArrayList<String> correctMap = maps.get(cycleStartIdx + (1000000000 - cycleStartIdx - 1) % (cycleEndIdx - cycleStartIdx));
