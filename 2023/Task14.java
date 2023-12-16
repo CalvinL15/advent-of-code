@@ -124,6 +124,7 @@ public class Task14 {
 
             // task b
             totalTaskB = getTotalTask(totalTaskB, correctMap);
+
             System.out.println("task A: " + totalTaskA);
             System.out.println("task B: " + totalTaskB);
         } catch (IOException e) {
