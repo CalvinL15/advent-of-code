@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class Task16 {
 
-    private static int findEnergizedTiles(String[] map, int row, int col, boolean[][] lightMap, HashSet<String> visited, String direction) {
+    private static int countEnergizedTiles(String[] map, int row, int col, boolean[][] lightMap, HashSet<String> visited, String direction) {
         String curState = row + "," + col + "," + direction;
 
         if (row < 0 || row > map.length - 1  || col < 0 || col > map[0].length() - 1 || visited.contains(curState)) {
@@ -27,15 +27,15 @@ public class Task16 {
         switch (tile) {
             case '|':
                 if (direction.equals("right") || direction.equals("left")) {
-                    taskB += findEnergizedTiles(map, row - 1, col, lightMap, visited,"up");
-                    taskB += findEnergizedTiles(map, row + 1, col, lightMap, visited,"down");
+                    taskB += countEnergizedTiles(map, row - 1, col, lightMap, visited,"up");
+                    taskB += countEnergizedTiles(map, row + 1, col, lightMap, visited,"down");
                     shouldContinue = false;
                 }
                 break;
             case '-':
                 if (direction.equals("up") || direction.equals("down")) {
-                    taskB += findEnergizedTiles(map, row, col + 1, lightMap, visited,"right");
-                    taskB += findEnergizedTiles(map, row, col - 1, lightMap, visited,"left");
+                    taskB += countEnergizedTiles(map, row, col + 1, lightMap, visited,"right");
+                    taskB += countEnergizedTiles(map, row, col - 1, lightMap, visited,"left");
                     shouldContinue = false;
                 }
                 break;
@@ -59,13 +59,13 @@ public class Task16 {
 
         if (shouldContinue) {
             if (newDirection.equals("right") && col < map[0].length() - 1) {
-                taskB += findEnergizedTiles(map, row, col + 1, lightMap, visited, newDirection);
+                taskB += countEnergizedTiles(map, row, col + 1, lightMap, visited, newDirection);
             } else if (newDirection.equals("left") && col > 0) {
-                taskB += findEnergizedTiles(map, row, col - 1, lightMap, visited, newDirection);
+                taskB += countEnergizedTiles(map, row, col - 1, lightMap, visited, newDirection);
             } else if (newDirection.equals("down") && row < map.length - 1) {
-                taskB += findEnergizedTiles(map,row + 1, col, lightMap, visited, newDirection);
+                taskB += countEnergizedTiles(map,row + 1, col, lightMap, visited, newDirection);
             } else if (newDirection.equals("up") && row > 0) {
-                taskB += findEnergizedTiles(map,row - 1, col, lightMap, visited, newDirection);
+                taskB += countEnergizedTiles(map,row - 1, col, lightMap, visited, newDirection);
             }
         }
         return taskB;
@@ -81,22 +81,14 @@ public class Task16 {
                 map[idx] = line;
                 idx++;
             }
-            int taskA = findEnergizedTiles(map, 0, 0, new boolean[110][110], new HashSet<>(), "right");
+            int taskA = countEnergizedTiles(map, 0, 0, new boolean[110][110], new HashSet<>(), "right");
             System.out.println("task a: " + taskA);
             int taskB = -1;
             for (int i = 0; i<110; i++){
-                HashSet<String> visited = new HashSet<>();
-                boolean[][] lightMap = new boolean[110][110];
-                int topRowConfigValue = findEnergizedTiles(map, 0, i, lightMap, visited,"down");
-                visited = new HashSet<>();
-                lightMap = new boolean[110][110];
-                int bottomRowConfigValue = findEnergizedTiles(map, 109, i, lightMap, visited, "up");
-                visited = new HashSet<>();
-                lightMap = new boolean[110][110];
-                int leftMostColumnConfigValue = findEnergizedTiles(map, i, 0, lightMap, visited, "right");
-                visited = new HashSet<>();
-                lightMap = new boolean[110][110];
-                int rightMostColumnConfigValue = findEnergizedTiles(map, i, 109, lightMap, visited, "left");
+                int topRowConfigValue = countEnergizedTiles(map, 0, i, new boolean[110][110], new HashSet<>(),"down");
+                int bottomRowConfigValue = countEnergizedTiles(map, 109, i, new boolean[110][110], new HashSet<>(), "up");
+                int leftMostColumnConfigValue = countEnergizedTiles(map, i, 0, new boolean[110][110], new HashSet<>(), "right");
+                int rightMostColumnConfigValue = countEnergizedTiles(map, i, 109, new boolean[110][110], new HashSet<>(), "left");
                 if (taskB < topRowConfigValue){
                     taskB = topRowConfigValue;
                 }
@@ -110,7 +102,7 @@ public class Task16 {
                     taskB = rightMostColumnConfigValue;
                 }
             }
-            System.out.println("task b:" + taskB);
+            System.out.println("task b: " + taskB);
         } catch (IOException e) {
             e.printStackTrace();
         }
