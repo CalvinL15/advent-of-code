@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.PriorityQueue;
 
 public class Task17 {
-    private static final int[][] DIRECTIONS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // East, South, West, North
+    private static final int[][] DIRECTIONS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // right, down, left, up
     private static final int MAX_STEPS_A = 3;
     private static final int MIN_STEPS_B = 4;
     private static final int MAX_STEPS_B = 10;
@@ -104,7 +104,7 @@ public class Task17 {
             }
         }
 
-        return -1; // No valid path found (not possible with the given input)
+        return -1; // No valid path found
     }
 
 

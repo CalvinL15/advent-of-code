@@ -81,8 +81,7 @@ public class Task16 {
                 map[idx] = line;
                 idx++;
             }
-            int taskA = countEnergizedTiles(map, 0, 0, new boolean[110][110], new HashSet<>(), "right");
-            System.out.println("task a: " + taskA);
+            System.out.println("task a: " + countEnergizedTiles(map, 0, 0, new boolean[110][110], new HashSet<>(), "right"));
             int taskB = -1;
             for (int i = 0; i<110; i++){
                 int topRowConfigValue = countEnergizedTiles(map, 0, i, new boolean[110][110], new HashSet<>(),"down");
