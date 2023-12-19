@@ -27,7 +27,7 @@ public class Task17 {
         }
     }
 
-    public static int findMinimumHeatLoss(int[][] cityBlocks, boolean isTaskA) {
+    private static int findMinimumHeatLoss(int[][] cityBlocks, boolean isTaskA) {
         int height = cityBlocks.length;
         int width = cityBlocks[0].length;
         PriorityQueue<State> pq = new PriorityQueue<>();

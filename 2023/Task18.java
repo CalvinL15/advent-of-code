@@ -1,8 +1,11 @@
+import common.Point;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
 
 class Instruction {
     Character direction;
@@ -11,13 +14,6 @@ class Instruction {
     public Instruction(Character direction, long value) {
         this.direction = direction;
         this.value = value;
-    }
-}
-class Point {
-    int x, y;
-    Point(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
 }
 
