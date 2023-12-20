@@ -1,3 +1,5 @@
+import common.Utils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -5,30 +7,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class Task8 {
-
-    public static long gcd(long number1, long number2) {
-        if (number1 == 0 || number2 == 0) {
-            return number1 + number2;
-        } else {
-            long absNumber1 = Math.abs(number1);
-            long absNumber2 = Math.abs(number2);
-            long biggerValue = Math.max(absNumber1, absNumber2);
-            long smallerValue = Math.min(absNumber1, absNumber2);
-            return gcd(biggerValue % smallerValue, smallerValue);
-        }
-    }
-
-    public static long lcm(long number1, long number2) {
-        if (number1 == 0 || number2 == 0)
-            return 0;
-        else {
-            long gcd = gcd(number1, number2);
-            return Math.abs(number1 * number2) / gcd;
-        }
-    }
-
-
-
     public static int solve8a(String instruction, Map<String, Node> nodes) {
         int instructionLength = instruction.length();
         String curLocation = "AAA";
@@ -45,6 +23,7 @@ public class Task8 {
     }
 
     public static long solve8b(String instruction, List<String> startingNodes, Map<String, Node> nodes) {
+        Utils utils = new Utils();
         int instructionLength = instruction.length();
         int howManyNodes = startingNodes.size();
         int steps = 0;
@@ -71,9 +50,9 @@ public class Task8 {
             difs[i] = first2TimesReachZ[i][1] - first2TimesReachZ[i][0];
         }
 
-        long curLCM = lcm(difs[0],difs[1]);
+        long curLCM = utils.lcm(difs[0],difs[1]);
         for (int i = 2; i<howManyNodes; i++){
-            curLCM = lcm(curLCM, difs[i]);
+            curLCM = utils.lcm(curLCM, difs[i]);
         }
 
         long lcmMultiple = 0;
