@@ -25,7 +25,7 @@ public class Task11 {
     }
 
     public static void main(String[] args) {
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         String line;
         String[] lines = new String[280];
         ArrayList<Coordinates> coordinates = new ArrayList<>();

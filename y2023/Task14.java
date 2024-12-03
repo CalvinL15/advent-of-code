@@ -62,7 +62,7 @@ public class Task14 {
     }
 
     public static void main(String[] args){
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         String line;
         int totalTaskA = 0;
         int totalTaskB = 0;

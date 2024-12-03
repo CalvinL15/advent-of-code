@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Task5a {
 
     public static void main(String[] args) {
-        File input = new File("2023/input");
+        File input = new File("/input");
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
             String line;
             long lowestLocation =  Long.MAX_VALUE;

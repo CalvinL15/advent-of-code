@@ -66,7 +66,7 @@ public class Task21 {
     }
 
     public static void main(String[] args){
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         String line;
         ArrayList<String> map = new ArrayList();
         int curIdx = 0;

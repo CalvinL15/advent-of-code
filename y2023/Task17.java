@@ -109,7 +109,7 @@ public class Task17 {
 
 
     public static void main(String[] args) {
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         String line;
         int[][] cityBlocks = new int[141][141];
         int idx = 0;

@@ -28,7 +28,7 @@ public class Task15 {
     }
 
     public static void main(String[] args){
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         String sequence;
         long totalTaskA = 0;
         long totalTaskB = 0;

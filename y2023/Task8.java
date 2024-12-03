@@ -72,7 +72,7 @@ public class Task8 {
     }
 
     public static void main(String[] args) {
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         String instruction;
         Map<String, Node> nodes = new HashMap<>();
         List<String> startingNodes = new ArrayList<>();

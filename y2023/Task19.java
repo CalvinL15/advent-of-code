@@ -92,7 +92,7 @@ public class Task19 {
     }
 
     public static void main(String[] args){
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         String line;
         HashMap<String, Rule> workflows = new HashMap<>();
         int total = 0;

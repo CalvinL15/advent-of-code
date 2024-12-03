@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 
 public class Task5b {
     public static void main(String[] args) {
-        File input = new File("2023/input");
+        File input = new File("/input");
         long lowestLocation = Long.MAX_VALUE;
         ArrayList<ConversionMap> conversionMaps = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {

@@ -103,7 +103,7 @@ public class Task25 {
 
 
     public static void main(String[] args) {
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         String line;
         Graph<String, DefaultEdge> g = new SimpleGraph<>(DefaultEdge.class); // for visualization
         CustomGraph cg = new CustomGraph();

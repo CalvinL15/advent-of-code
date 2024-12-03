@@ -176,7 +176,7 @@ public class Task20 {
     }
 
     public static void main(String[] args){
-        File input = new File("2023/input.txt");
+        File input = new File("/input.txt");
         HashMap<String, Module> modules = new HashMap();
         String line;
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
