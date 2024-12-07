@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Task2b {
+public class Task2 {
 
     public static boolean isValid(int[] numbers) {
         boolean isUnknown = true;
@@ -35,27 +35,27 @@ public class Task2b {
             }
         }
 
-        if (isValid) {
-            return true;
-        }
-        return false;
+        return isValid;
     }
 
     public static void main(String[] args)
     {
-        int totalReports = 0;
+        int total2a = 0;
+        int total2b = 0;
         File input = new File("./y2024/input.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(input))) {
-            String line = "";
+            String line;
             while ((line = reader.readLine()) != null) {
                 int[] numbers = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).toArray();
                 if (numbers.length == 2 && Math.abs(numbers[1] - numbers[0]) <= 3) {
-                    totalReports++;
+                    total2a++;
+                    total2b++;
                     continue;
                 }
                 // check if the array is valid without removal
                 if (isValid(numbers)) {
-                    totalReports++;
+                    total2a++;
+                    total2b++;
                     continue;
                 }
 
@@ -67,15 +67,15 @@ public class Task2b {
                             newArray[k++] = numbers[j];
                         }
                     }
-
                     // Check if removing this element makes the array valid
                     if (isValid(newArray)) {
-                        totalReports++;
+                        total2b++;
                         break;
                     }
                 }
             }
-            System.out.println(totalReports);
+            System.out.println("2a: " + total2a);
+            System.out.println("2b: " + total2b);
         } catch (IOException e) {
             e.printStackTrace();
         }
